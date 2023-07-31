@@ -1,0 +1,10 @@
+.DS_Store
+
+Backup/.data
+Backup/.tmp
+Backup/log/*
+
+/log/*
+/tmp/*
+!/Backup/log/.keep
+!/tmp/.keep

@@ -1,0 +1,24 @@
+version: "3"
+
+volumes:
+  bundle:
+
+services:
+  schedule:
+    build: .
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+      - ./Backup:/root/Backup
+      - ./tmp/backups/:/root/backups
+    command: bundle exec whenever --update-crontab && cron -f
+    stdin_open: true
+    tty: true
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+        max-file: '10'
+    # environment:
+    #   - DATABASE_URL=postgres://postgres@192.168.0.108:5432/app_development
+    #   - FREQUENCY=10.seconds
