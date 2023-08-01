@@ -6,6 +6,7 @@ set :output, "#{path}/Backup/log/backup.log"
 set :environment, ENV["RAILS_ENV"]
 
 # For backup database
-every 1.hour do
-  command "backup perform -t db_backup"
+# every 1.hour do
+every 1.minute do
+  command "bundle exec backup perform -t db_backup"
 end

@@ -12,11 +12,11 @@
 Model.new(:db_backup, 'Backup scorecards database') do
   database PostgreSQL do |db|
     # To dump all databases, set `db.name = :all` (or leave blank)
-    db.name               = ENV.fetch('DB_NAME') { 'csc_web_development' }
+    db.name               = ENV.fetch('DB_NAME') { 'migrant_worker_rails_development' }
     db.username           = ENV.fetch('DB_USER') { 'postgres' }
     db.password           = ENV.fetch('DB_PWD') { '' }
     # db.host               = ENV.fetch('DB_HOST') { 'db' }
-    db.host               = ENV.fetch('DB_HOST') { '192.168.0.105' }
+    db.host               = ENV.fetch('DB_HOST') { '192.168.0.103' }
     db.port               = ENV.fetch('DB_PORT') { 5432 }
     # db.socket             = "/tmp/pg.sock"
     # When dumping all databases, `skip_tables` and `only_tables` are ignored.
