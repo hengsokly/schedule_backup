@@ -11,10 +11,8 @@ services:
       - bundle:/usr/local/bundle
       - ./Backup:/root/Backup
       - ./tmp/backups/:/root/backups
-      - ./hello-cron:/etc/cron.d/hello-cron
-      - ./cron.log:/var/log/cron.log
-    command: bash -c "bundle exec whenever --update-crontab && cron -f -l 2"
-    # command: cron -f
+    # command: bash -c "bundle exec whenever --update-crontab && cron -f -l 2 && tail -f /var/log/cron.log"
+    command: bash -c "bundle exec whenever --update-crontab && cron && tail -f /var/log/cron.log"
     stdin_open: true
     tty: true
     logging:

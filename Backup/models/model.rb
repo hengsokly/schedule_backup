@@ -16,7 +16,7 @@ Model.new(:db_backup, 'Backup scorecards database') do
     db.username           = ENV.fetch('DB_USER') { 'postgres' }
     db.password           = ENV.fetch('DB_PWD') { '' }
     # db.host               = ENV.fetch('DB_HOST') { 'db' }
-    db.host               = ENV.fetch('DB_HOST') { '192.168.0.103' }
+    db.host               = ENV.fetch('DB_HOST') { '192.168.1.115' }
     db.port               = ENV.fetch('DB_PORT') { 5432 }
     # db.socket             = "/tmp/pg.sock"
     # When dumping all databases, `skip_tables` and `only_tables` are ignored.

@@ -2,7 +2,7 @@ ENV.each_key do |key|
   env key.to_sym, ENV[key]
 end
 
-set :output, "#{path}/Backup/log/backup.log"
+set :output, "/var/log/cron.log"
 set :environment, ENV["RAILS_ENV"]
 
 # For backup database

@@ -30,12 +30,6 @@ RUN apt-get -y install postgresql-client-12
 ADD Backup/config.rb /root/Backup/config.rb
 ADD Backup/models/model.rb /root/Backup/models/
 
-# Plan to remove
-COPY hello-cron /etc/cron.d/hello-cron
-RUN chmod 0744 /etc/cron.d/hello-cron
-RUN crontab /etc/cron.d/hello-cron
-RUN touch /var/log/cron.log
-
 RUN mkdir /app
 WORKDIR /app
 
