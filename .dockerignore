@@ -1,0 +1,16 @@
+.git
+.gitignore
+README.md
+
+# Docker environment
+app.env
+app.env.*
+Dockerfile
+Dockerfile.*
+docker-compose.*
+
+# Backup tmp file
+Backup/.data
+Backup/.tmp
+Backup/log/*
+backups/*

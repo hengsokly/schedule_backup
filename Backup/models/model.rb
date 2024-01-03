@@ -9,15 +9,17 @@
 # For more information about Backup's components, see the documentation at:
 # http://backup.github.io/backup
 #
-Model.new(:db_backup, 'Backup scorecards database') do
+require 'uri'
+
+DATABASE_URL = URI.parse ENV['DATABASE_URL']
+
+Model.new(:db_backup, 'Backup database') do
   database PostgreSQL do |db|
-    # To dump all databases, set `db.name = :all` (or leave blank)
-    db.name               = ENV.fetch('DB_NAME') { 'migrant_worker_rails_development' }
-    db.username           = ENV.fetch('DB_USER') { 'postgres' }
-    db.password           = ENV.fetch('DB_PWD') { '' }
-    # db.host               = ENV.fetch('DB_HOST') { 'db' }
-    db.host               = ENV.fetch('DB_HOST') { '192.168.1.115' }
-    db.port               = ENV.fetch('DB_PORT') { 5432 }
+    db.name               = DATABASE_URL.path.delete('/')
+    db.username           = DATABASE_URL.user
+    db.password           = DATABASE_URL.password
+    db.host               = DATABASE_URL.host
+    db.port               = DATABASE_URL.port || 5432
     # db.socket             = "/tmp/pg.sock"
     # When dumping all databases, `skip_tables` and `only_tables` are ignored.
     # db.skip_tables        = ['skip', 'these', 'tables']
@@ -25,17 +27,7 @@ Model.new(:db_backup, 'Backup scorecards database') do
     db.additional_options = []
   end
 
-  # if ENV['STORAGE_TYPE'] == "Local"
-  if true
-    ##
-    # Local (Copy) [Storage]
-    #
-    store_with Local do |local|
-      local.path       = "/root/backups/"
-      local.keep       = 5
-      # local.keep       = Time.now - 2592000 # Remove all backups older than 1 month.
-    end
-  else
+  if ENV['STORAGE_TYPE'] == "AWS3"
     ##
     # AWS3 [Storage]
     #
@@ -50,11 +42,19 @@ Model.new(:db_backup, 'Backup scorecards database') do
       s3.bucket             = ENV["AWS_NAME_OF_DB_BUCKET"]
       s3.path               = ENV["AWS_PATH_TO_DB_BACKUP"]
     end
+  else
+    ##
+    # Local (Copy) [Storage]
+    #
+    store_with Local do |local|
+      local.path       = "/root/backups/"
+      local.keep       = 5
+      # local.keep       = Time.now - 2592000 # Remove all backups older than 1 month.
+    end
   end
 
   ##
   # Gzip [Compressor]
   #
   compress_with Gzip
-
 end

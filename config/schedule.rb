@@ -3,10 +3,8 @@ ENV.each_key do |key|
 end
 
 set :output, "/var/log/cron.log"
-set :environment, ENV["RAILS_ENV"]
 
 # For backup database
-# every 1.hour do
-every 1.minute do
+every (ENV["BACKUP_PERIOD"] || 1).to_i.day do
   command "bundle exec backup perform -t db_backup"
 end

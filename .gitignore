@@ -3,8 +3,8 @@
 Backup/.data
 Backup/.tmp
 Backup/log/*
+backups/*
+app.env
 
-/log/*
-/tmp/*
 !/Backup/log/.keep
-!/tmp/.keep
+!/backups/.keep
