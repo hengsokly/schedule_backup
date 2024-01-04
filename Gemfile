@@ -3,8 +3,8 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
+ruby "3.3.0"
 
-gem "whenever"
+gem "whenever", "~> 1.0.0"
 gem "backup", "~>5.0.0.beta.3"
 gem "psych", "< 4"

@@ -63,7 +63,7 @@ GEM
       json
     dry-inflector (1.0.0)
     equalizer (0.0.11)
-    excon (0.108.0)
+    excon (0.109.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     flowdock (0.4.0)
@@ -339,10 +339,10 @@ PLATFORMS
 DEPENDENCIES
   backup (~> 5.0.0.beta.3)
   psych (< 4)
-  whenever
+  whenever (~> 1.0.0)
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 3.3.0p0
 
 BUNDLED WITH
-   2.3.7
+   2.5.3
