@@ -5,6 +5,6 @@ end
 set :output, "/var/log/cron.log"
 
 # For backup database
-every (ENV["BACKUP_PERIOD"] || 1).to_i.day do
+every ENV.fetch("CRON_SYNTAX") { "0 0 * * *" } do
   command "bundle exec backup perform -t db_backup"
 end

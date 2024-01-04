@@ -10,7 +10,7 @@ In ```app.env``` file: copy content in ```app.env.example``` to the file and upd
 ## Run back up every day
 ```BACKUP_PERIOD=1```
 
-## If your storage type is AWS3
+## If your storage type is AWS3, uncomment below and update change_me
 ```
 STORAGE_TYPE=AWS3
 AWS_ACCESS_KEY_ID=change_me

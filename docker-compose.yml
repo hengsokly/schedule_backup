@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 
 volumes:
   bundle:
@@ -13,7 +13,8 @@ services:
       - bundle:/usr/local/bundle
       - ./Backup:/root/Backup
       - ./backups/:/root/backups
-    command: bash -c "bundle exec whenever --update-crontab && cron && touch /var/log/cron.log && tail -f /var/log/cron.log"
+    # command: bash -c "bundle exec whenever --update-crontab && cron && touch /var/log/cron.log && tail -f /var/log/cron.log"
+    command: bash -c "bundle exec whenever --update-crontab && cron -f"
     stdin_open: true
     tty: true
     env_file: app.env
