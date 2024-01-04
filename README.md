@@ -4,13 +4,13 @@ Backup database service using backup gem, whenever gem, and docker.
 ## Configuration
 In ```app.env``` file: copy content in ```app.env.example``` to the file and update it.
 
-## Update to your database url
+### Update to your database url
 ```DATABASE_URL=postgres://username:password@localhost:5432/app_development```
 
-## Run back up every day
-```BACKUP_PERIOD=1```
+### Run back up every day, or update it to your preference
+```CRON_SYNTAX="0 0 * * *"```
 
-## If your storage type is AWS3, uncomment below and update change_me
+### If your storage type is AWS3, uncomment below and update change_me
 ```
 STORAGE_TYPE=AWS3
 AWS_ACCESS_KEY_ID=change_me
