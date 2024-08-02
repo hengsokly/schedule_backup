@@ -1,5 +1,8 @@
 FROM ruby:3.3.0
 
+# Set environment variable for the timezone
+ENV TZ=Asia/Bangkok
+
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev vim cron postgresql-client
 
 # fix installing backup gem on the ruby 3.3.0
